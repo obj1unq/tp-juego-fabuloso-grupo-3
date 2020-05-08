@@ -5,11 +5,11 @@ program juego{
 	game.title("veremos")
 	game.height(10)
 	game.width(10)
-	game.ground("fondo.png")
+	game.ground("suelo.png")
 	
 	game.addVisualCharacter(personaje)
 	
-	//game.onCollideDo(personaje, {})
+	//game.onCollideDo(proyectil, {jugador => jugador.colisionoCon(proyectil)})
 	
 	game.start()
 }

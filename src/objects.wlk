@@ -17,4 +17,7 @@ object personaje {
 	method perderVelocidad(cantidad){
 		reduccionDeVelocidad += cantidad
 	}
+	
+	//method colisionoCon(objeto){
+	//}
 }
