@@ -1,0 +1,15 @@
+import wollok.game.*
+import objects.*
+
+program juego{
+	game.title("veremos")
+	game.height(10)
+	game.width(10)
+	game.ground("fondo.png")
+	
+	game.addVisualCharacter(personaje)
+	
+	//game.onCollideDo(personaje, {})
+	
+	game.start()
+}
