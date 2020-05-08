@@ -1,11 +1,11 @@
 import wollok.game.*
 
 object personaje {
-	var property image ="link.jpg"
+	var property image ="pepita1.png"
 	var property position = game.at(0,0)
 	
-	var vida = 100
-	var reduccionDeVelocidad = 0
+	var property vida = 100
+	var property reduccionDeVelocidad = 0
 	
 	method perderVida(cantidad){
 		vida = (vida - cantidad).max(0)
@@ -17,7 +17,17 @@ object personaje {
 	method perderVelocidad(cantidad){
 		reduccionDeVelocidad += cantidad
 	}
-	
-	//method colisionoCon(objeto){
-	//}
 }
+
+object proyectil{
+	var property image ="alpiste.png"
+	var property position = game.at(3,3)
+	
+	method colisionoCon(pj){
+		pj.perderVida(20)
+		console.println(personaje.vida())
+	}
+	
+}
+
+
