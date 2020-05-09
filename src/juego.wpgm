@@ -8,7 +8,6 @@ program juego{
 	game.width(10)
 	game.ground("suelo.png")
 	
-	//Visuales
 	game.addVisualCharacter(personaje)
 	game.addVisual(proyectil)
 	game.addVisual(bomba)
@@ -16,7 +15,6 @@ program juego{
 	
 	game.onCollideDo(personaje, {otro => otro.colisionoCon(personaje)})
 	
-	//Teclado
 	keyboard.v().onPressDo({game.say(personaje, personaje.vida().toString())})
 	
 	game.start()
