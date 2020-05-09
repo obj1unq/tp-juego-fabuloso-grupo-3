@@ -40,9 +40,10 @@ object randomizer{
 
 
 object proyectil{
-	var image ="alpiste.png"
+	var property imagen ="alpiste.png"
 	var property position = game.at(3,3)
 	var property estado = cayendo
+	const property danioNormal = 20
 	
 	method image(){
 		estado.imagen(self)
@@ -54,14 +55,26 @@ object proyectil{
 	}
 	
 	method colisionoCon(pj){
-		pj.perderVida(20)
+		pj.perderVida(estado.danio())
 		console.println(personaje.vida())
 	}
 	
 }
 
 object cayendo{
-	method image(){
+	method imagen(objeto){
 		return "fondo.png"
+	}
+	method danio(objeto){
+		return 0
+	}
+}
+
+object normal{
+	method imagen(objeto){
+		return objeto.imagen()
+	}
+	method danio(objeto){
+		return objeto.danioNormal()
 	}
 }
