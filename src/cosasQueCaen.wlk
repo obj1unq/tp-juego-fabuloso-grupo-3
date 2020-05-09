@@ -8,7 +8,7 @@ import estados.*
 
 object proyectil{
 	const property imagen ="alpiste.png" // esta imagen es la que va a tener cuando pueda hacer daño
-	var property position = game.at(0, 9)
+	var property position = game.at(0, 9) //no es importante donde inicia, ya que se va a randomizar su posicion en el corto plazo
 	var property estado = cayendo // esto determina si el objeto hace daño o no y que imagen tiene por polimorfismo
 	const property danioNormal = 20
 	
