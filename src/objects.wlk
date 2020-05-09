@@ -1,4 +1,5 @@
 import wollok.game.*
+import posicionAleatoria.*
 
 object personaje {
 	var property image ="pepita1.png"
@@ -23,7 +24,7 @@ object personaje {
 
 object proyectil{
 	const property imagen ="alpiste.png"
-	var property position = game.at(posicionAleatoria.posicionVaciaX(), posicionAleatoria.posicionVaciaY())
+	var property position = game.at(0, 9)
 	var property estado = cayendo
 	const property danioNormal = 20
 	

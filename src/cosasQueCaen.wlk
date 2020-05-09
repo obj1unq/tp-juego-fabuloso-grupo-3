@@ -2,9 +2,9 @@ import wollok.game.*
 import objects.*
 import posicionAleatoria.*
 
-object proyectil {
+object proyectil2 {
 	var property image ="alpiste.png"
-	var property position = game.at(posicionAleatoria.posicionVaciaX(), posicionAleatoria.posicionVaciaY())
+	var property position = randomizer.emptyOrPj()
 	
 	method colisionoCon(pj){
 		pj.perderVida(20)
@@ -14,7 +14,7 @@ object proyectil {
 }
 object bomba {
 	var property image = "alpiste.png"
-	var property position = game.at(posicionAleatoria.posicionVaciaX(), posicionAleatoria.posicionVaciaY())
+	var property position = randomizer.emptyOrPj()
 	
 	method colisionoCon(pj){
 		pj.perderVida(50)
@@ -23,7 +23,7 @@ object bomba {
 }
 object botiquin {
 	var property image = "alpiste.png"
-	var property position = game.at(posicionAleatoria.posicionVaciaX(), posicionAleatoria.posicionVaciaY())
+	var property position = randomizer.emptyPosition()
 
 	method colisionoCon(pj){
 		pj.ganarVida(100)
