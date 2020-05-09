@@ -14,20 +14,10 @@ object personaje {
 	method ganarVida(cantidad){
 		vida =(vida + cantidad).min(100)
 	}
+	
 	method perderVelocidad(cantidad){
 		reduccionDeVelocidad += cantidad
 	}
-}
-
-object proyectil{
-	var property image ="alpiste.png"
-	var property position = game.at(3,3)
-	
-	method colisionoCon(pj){
-		pj.perderVida(20)
-		console.println(personaje.vida())
-	}
-	
 }
 
 

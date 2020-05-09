@@ -1,5 +1,6 @@
 import wollok.game.*
 import objects.*
+import cosasQueCaen.*
 
 program juego{
 	game.title("veremos")
@@ -7,10 +8,16 @@ program juego{
 	game.width(10)
 	game.ground("suelo.png")
 	
+	//Visuales
 	game.addVisualCharacter(personaje)
 	game.addVisual(proyectil)
+	game.addVisual(bomba)
+	game.addVisual(botiquin)
 	
 	game.onCollideDo(personaje, {otro => otro.colisionoCon(personaje)})
+	
+	//Teclado
+	keyboard.v().onPressDo({game.say(personaje, personaje.vida().toString())})
 	
 	game.start()
 }
