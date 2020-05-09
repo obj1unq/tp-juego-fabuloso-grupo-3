@@ -14,7 +14,7 @@ object randomizer{
 		}
 	}
 	
-	method emptyOrPj(){
+	method emptyOrPj(){ // este metodo devuelve una posicion aleatoria que puede ser vacia o la del personaje
 				const positionRandom = game.at(
 			0.randomUpTo(game.width() - 1).truncate(0)	,
 			0.randomUpTo(game.height() - 1).truncate(0)
