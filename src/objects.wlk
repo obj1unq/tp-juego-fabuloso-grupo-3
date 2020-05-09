@@ -19,6 +19,8 @@ object personaje {
 	}
 }
 
+
+
 object randomizer{
 	method emptyPosition(){
 		const positionRandom = game.at(
@@ -33,6 +35,19 @@ object randomizer{
 		}
 	}
 	
+	method emptyOrPj(){
+				const positionRandom = game.at(
+			0.randomUpTo(game.width() - 1).truncate(0)	,
+			0.randomUpTo(game.height() - 1).truncate(0)
+		)
+		
+		if( game.getObjectsIn(positionRandom).isEmpty() or game.getObjectsIn(positionRandom).contains(personaje)) {
+				return positionRandom
+		} else{
+			return self.emptyOrPj()
+		}
+	}
+	
 }
 
 
@@ -40,34 +55,41 @@ object randomizer{
 
 
 object proyectil{
-	var property imagen ="alpiste.png"
+	const property imagen ="alpiste.png"
 	var property position = game.at(3,3)
 	var property estado = cayendo
 	const property danioNormal = 20
 	
 	method image(){
-		estado.imagen(self)
+		return estado.imagen(self)
 	}
 	
-	
 	method caer(){
-		self.position(randomizer.emptyPosition())
+		self.position(randomizer.emptyOrPj())
+		self.estado(cayendo)
+		game.onTick(1000,"ProyectilNormal",{self.impacto()})
+	}
+	
+	method impacto(){
+		estado = normal
+		game.removeTickEvent("ProyectilNormal")
 	}
 	
 	method colisionoCon(pj){
-		pj.perderVida(estado.danio())
-		console.println(personaje.vida())
+		pj.perderVida(estado.danio(self))
+		console.println(pj.vida())
 	}
 	
 }
 
 object cayendo{
 	method imagen(objeto){
-		return "fondo.png"
+		return "manzana.png"
 	}
 	method danio(objeto){
 		return 0
 	}
+
 }
 
 object normal{
