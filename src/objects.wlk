@@ -21,3 +21,52 @@ object personaje {
 }
 
 
+object proyectil{
+	const property imagen ="alpiste.png"
+	var property position = game.at(posicionAleatoria.posicionVaciaX(), posicionAleatoria.posicionVaciaY())
+	var property estado = cayendo
+	const property danioNormal = 20
+	
+	method image(){
+		return estado.imagen(self)
+	}
+	
+	method caer(){
+		self.position(randomizer.emptyOrPj())
+		self.estado(cayendo)
+		game.schedule(1000,{self.impacto()})
+	}
+	
+	method impacto(){
+		estado = normal
+		
+		if(game.getObjectsIn(position).contains(personaje)){
+			self.colisionoCon(personaje)
+		}
+	}
+	
+	method colisionoCon(pj){
+		pj.perderVida(estado.danio(self))
+		console.println(pj.vida())
+	}
+	
+}
+
+object cayendo{
+	method imagen(objeto){
+		return "manzana.png"
+	}
+	method danio(objeto){
+		return 0
+	}
+
+}
+
+object normal{
+	method imagen(objeto){
+		return objeto.imagen()
+	}
+	method danio(objeto){
+		return objeto.danioNormal()
+	}
+}

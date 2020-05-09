@@ -15,7 +15,7 @@ program juego{
 	
 	game.onCollideDo(personaje, {otro => otro.colisionoCon(personaje)})
 	
-	keyboard.v().onPressDo({game.say(personaje, personaje.vida().toString())})
+	game.onTick(3000,"caeProyectil", {proyectil.caer()})
 	
 	game.start()
 }
