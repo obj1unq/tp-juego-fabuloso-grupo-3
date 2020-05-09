@@ -67,12 +67,15 @@ object proyectil{
 	method caer(){
 		self.position(randomizer.emptyOrPj())
 		self.estado(cayendo)
-		game.onTick(1000,"ProyectilNormal",{self.impacto()})
+		game.schedule(1000,{self.impacto()})
 	}
 	
 	method impacto(){
 		estado = normal
-		game.removeTickEvent("ProyectilNormal")
+		
+		if(game.getObjectsIn(position).contains(personaje)){
+			self.colisionoCon(personaje)
+		}
 	}
 	
 	method colisionoCon(pj){
