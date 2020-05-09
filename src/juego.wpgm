@@ -12,5 +12,7 @@ program juego{
 	
 	game.onCollideDo(personaje, {otro => otro.colisionoCon(personaje)})
 	
+	game.onTick(3000,"caeProyectil", {proyectil.caer()})
+	
 	game.start()
 }
