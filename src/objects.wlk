@@ -14,49 +14,16 @@ object personaje {
 	method ganarVida(cantidad){
 		vida =(vida + cantidad).min(100)
 	}
+	
 	method perderVelocidad(cantidad){
 		reduccionDeVelocidad += cantidad
 	}
 }
 
 
-
-object randomizer{
-	method emptyPosition(){
-		const positionRandom = game.at(
-			0.randomUpTo(game.width() - 1).truncate(0)	,
-			0.randomUpTo(game.height() - 1).truncate(0)
-		)
-		
-		if( game.getObjectsIn(positionRandom).isEmpty()) {
-				return positionRandom
-		} else{
-			return self.emptyPosition()
-		}
-	}
-	
-	method emptyOrPj(){
-				const positionRandom = game.at(
-			0.randomUpTo(game.width() - 1).truncate(0)	,
-			0.randomUpTo(game.height() - 1).truncate(0)
-		)
-		
-		if( game.getObjectsIn(positionRandom).isEmpty() or game.getObjectsIn(positionRandom).contains(personaje)) {
-				return positionRandom
-		} else{
-			return self.emptyOrPj()
-		}
-	}
-	
-}
-
-
-
-
-
 object proyectil{
 	const property imagen ="alpiste.png"
-	var property position = game.at(3,3)
+	var property position = game.at(posicionAleatoria.posicionVaciaX(), posicionAleatoria.posicionVaciaY())
 	var property estado = cayendo
 	const property danioNormal = 20
 	
