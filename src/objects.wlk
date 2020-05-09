@@ -19,9 +19,39 @@ object personaje {
 	}
 }
 
+object randomizer{
+	method emptyPosition(){
+		const positionRandom = game.at(
+			0.randomUpTo(game.width() - 1).truncate(0)	,
+			0.randomUpTo(game.height() - 1).truncate(0)
+		)
+		
+		if( game.getObjectsIn(positionRandom).isEmpty()) {
+				return positionRandom
+		} else{
+			return self.emptyPosition()
+		}
+	}
+	
+}
+
+
+
+
+
 object proyectil{
-	var property image ="alpiste.png"
+	var image ="alpiste.png"
 	var property position = game.at(3,3)
+	var property estado = cayendo
+	
+	method image(){
+		estado.imagen(self)
+	}
+	
+	
+	method caer(){
+		self.position(randomizer.emptyPosition())
+	}
 	
 	method colisionoCon(pj){
 		pj.perderVida(20)
@@ -30,4 +60,8 @@ object proyectil{
 	
 }
 
-
+object cayendo{
+	method image(){
+		return "fondo.png"
+	}
+}
