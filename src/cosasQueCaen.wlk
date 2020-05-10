@@ -44,7 +44,7 @@ object proyectil {
 	
 }
 
-// proyectil2 es igual a proyectil"
+// proyectil2 es igual a "proyectil"
 object proyectil2 {
 	var property imagen = "alpiste.png"
 	
@@ -84,6 +84,8 @@ object proyectil2 {
 	}
 }
 
+
+
 object bomba {
 	var property image = "alpiste.png"
 	var property position = randomizer.emptyOrPj()
@@ -95,11 +97,20 @@ object bomba {
 }
 
 object botiquin {
-	var property image = "alpiste.png"
+	var property image = "corazon.png"
 	var property position = randomizer.emptyPosition()
-
+	
+	method aparicion(){
+		if(game.hasVisual(self)){
+			game.removeVisual(self)
+		}
+		position = randomizer.emptyPosition()
+		game.addVisual(self)
+	}
+	
 	method colisionoCon(pj){
-		pj.ganarVida(100)
+		pj.ganarVida(30)
 		console.println(pj.vida())
+		game.removeVisual(self)
 	}
 }

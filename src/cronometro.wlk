@@ -19,7 +19,7 @@ object cronometro {
 							segundos.toString())
 		}
 		else { 
-			console.println("Perdiste, has vivido: " + minutos.asString() + ":" + segundos.asString())
+			console.println("Perdiste, has vivido: " + minutos + ":" + segundos)
 		}
 	}
 }
