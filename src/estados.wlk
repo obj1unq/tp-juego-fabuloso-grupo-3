@@ -16,7 +16,7 @@ object cayendo {
 	// una imagen que indica donde va a caer.
 	
 	method imagen(objeto) {
-		return "manzana.png" // imagen provisoria que simula la caida
+		return "sombra-png-4.png" // imagen provisoria que simula la caida
 	}
 	
 	method danio(objeto) {
