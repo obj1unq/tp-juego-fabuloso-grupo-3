@@ -6,7 +6,7 @@ import estados.*
 //PROYECTIL BASE
 
 object proyectil {
-	var property image = "alpiste.png"
+	var property imagen = "alpiste.png"
 	
 	// No es importante donde inicia, ya que se va a randomizar
 	// su posicion en el corto plazo
@@ -17,12 +17,15 @@ object proyectil {
 	
 	const property danioNormal = 20
 	
+	method image(){
+		return estado.imagen(self)
+	}
+	
 	method caer() { 
 		// Todos los objetos que dañen al personaje deberian entender
 		// este msj y tener una aplicacion parecida
 		self.estado(cayendo)
 		self.position(randomizer.emptyOrPj())
-		self.image(estado.imagen())
 		game.schedule(1000, { self.impacto() })
 	}
 	

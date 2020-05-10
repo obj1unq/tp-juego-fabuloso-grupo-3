@@ -2,8 +2,8 @@ object normal {
 	// Si el proyectil está en este estado devuelve sus propios
 	// atributos (hace daño y tiene una imagen propia).
 	
-	method imagen(){
-		return "link.jpg"
+	method imagen(objeto){
+		return objeto.imagen() // devuelve la imagen base del objeto
 	}
 	
 	method danio(objeto){
@@ -15,8 +15,8 @@ object cayendo {
 	// Si el proyectil está cayendo no hace daño y muestra
 	// una imagen que indica donde va a caer.
 	
-	method imagen() {
-		return "manzana.png" // imagen provisoria
+	method imagen(objeto) {
+		return "manzana.png" // imagen provisoria que simula la caida
 	}
 	
 	method danio(objeto) {
