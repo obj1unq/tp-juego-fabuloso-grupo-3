@@ -2,7 +2,7 @@ import wollok.game.*
 import posicionAleatoria.*
 
 object personaje {
-	var property image ="pepita1.png"
+	var property image = "pepita1.png"
 	var property position = game.at(0,0)
 	
 	var property vida = 100
