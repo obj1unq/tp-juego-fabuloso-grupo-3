@@ -2,6 +2,7 @@ import wollok.game.*
 import objects.*
 import posicionAleatoria.*
 import estados.*
+import explosion.*
 
 //PROYECTIL BASE
 object proyectil {
@@ -30,7 +31,6 @@ object proyectil {
 	
 	method impacto() {
 		self.estado(normal)
-		
 		// Chequea si el personaje está en la misma celda cuando hay cambio de estado
 		if(game.getObjectsIn(position).contains(personaje)) {
 			self.colisionoCon(personaje)
@@ -84,18 +84,6 @@ object proyectil2 {
 	}
 }
 
-
-
-object bomba {
-	var property image = "alpiste.png"
-	var property position = randomizer.emptyOrPj()
-	
-	method colisionoCon(pj){
-		pj.perderVida(50)
-		console.println(pj.vida())
-	}
-}
-
 object botiquin {
 	var property image = "corazon.png"
 	var property position = randomizer.emptyPosition()
@@ -114,3 +102,23 @@ object botiquin {
 		game.removeVisual(self)
 	}
 }
+
+object bomba {
+	var property image = "bomba.png"
+	var property position = randomizer.emptyOrPj()
+	
+	method caer(){
+		position = randomizer.emptyOrPj()
+		game.addVisual(self)
+		game.schedule(1000,{self.explotar()})
+	}
+	
+	method explotar(){
+		game.removeVisual(self)
+		explosion.aparecer(position)
+	}
+	
+	method colisionoCon(pj){
+	}
+}
+
