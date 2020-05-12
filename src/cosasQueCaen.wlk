@@ -89,11 +89,10 @@ object botiquin {
 	var property position = randomizer.emptyPosition()
 	
 	method aparicion(){
-		if(game.hasVisual(self)){
-			game.removeVisual(self)
-		}
 		position = randomizer.emptyPosition()
-		game.addVisual(self)
+		if(not game.hasVisual(self)){
+			game.addVisual(self)
+		}
 	}
 	
 	method colisionoCon(pj){
@@ -119,6 +118,23 @@ object bomba {
 	}
 	
 	method colisionoCon(pj){
+	}
+}
+
+object moneda{
+	const property image= "moneda.png"
+	var property position = randomizer.emptyPosition()
+	
+	method aparicion(){
+		position = randomizer.emptyPosition()
+		if(not game.hasVisual(self)){
+			game.addVisual(self)
+		}
+	}
+	
+	method colisionoCon(pj){
+		//acá va un metodo para sumar puntos!!!!
+		game.removeVisual(self)
 	}
 }
 
