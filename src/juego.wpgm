@@ -1,5 +1,5 @@
 import wollok.game.*
-import objects.*
+import personaje.*
 import cosasQueCaen.*
 import cronometro.*
 
@@ -11,23 +11,20 @@ program juego{
 	game.width(10)
 	game.ground("suelo.png")
 	
-	// VISUAL
+	//VISUAL
 	game.addVisualCharacter(personaje)
 	game.addVisual(proyectil)
-	game.addVisual(proyectil2)
-	//game.addVisual(bomba)
-	//game.addVisual(botiquin)
 	
 	//PROGRAMACION
 	game.onCollideDo(personaje, { otro => otro.colisionoCon(personaje) })	
 	game.onTick(1000, "cronometro", { cronometro.sumar() })
 	//PROYECTILES
 	game.onTick(3000, "caeProyectil", { proyectil.caer() })
-	game.onTick(2000, "caeProyectil2", { proyectil2.caer() })
 	game.onTick(4000,"caeBomba", {bomba.caer()})
 	//BOTIQUIN
 	game.onTick(5000,"apareceBotiquin",{botiquin.aparicion()})
 	game.onTick(10000,"apareceMoneda", {moneda.aparicion()})
 	// START
+	
 	game.start()
 }

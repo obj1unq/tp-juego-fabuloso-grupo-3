@@ -1,5 +1,5 @@
 import wollok.game.*
-import objects.*
+import personaje.*
 
 object randomizer{
 	method emptyPosition(){
