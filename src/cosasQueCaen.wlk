@@ -5,7 +5,7 @@ import estados.*
 import explosion.*
 
 //PROYECTIL BASE
-object proyectil {
+class Proyectil {
 	var property imagen = "piedra.png"
 	
 	// No es importante donde inicia, ya que se va a randomizar
@@ -24,17 +24,21 @@ object proyectil {
 	method caer() { 
 		// Todos los objetos que dañen al personaje deberian entender
 		// este msj y tener una aplicacion parecida
+		
 		self.estado(cayendo)
 		self.position(randomizer.emptyOrPj())
+		game.addVisual(self)
 		game.schedule(1000, { self.impacto() })
 	}
 	
 	method impacto() {
+		
 		self.estado(normal)
 		// Chequea si el personaje está en la misma celda cuando hay cambio de estado
 		if(game.getObjectsIn(position).contains(personaje)) {
 			self.colisionoCon(personaje)
 		}
+		game.schedule(1000,{game.removeVisual(self)})
 	}
 	
 	method colisionoCon(pj) {
