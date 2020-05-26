@@ -17,3 +17,23 @@ object lanzaProyectiles {
 		proyectilesActuales.add(new Proyectil())
 	}
 }
+
+object controladorMonedas{
+	const monedasActuales=#{new Moneda(), new Moneda(), new Moneda(), new Moneda(), new Moneda()}
+	
+	method inicio(){
+		game.onTick(10000,"apareceMoneda", {self.aparecenTodas()})
+		game.onTick(40000,"menosMonedas", {self.quitarMoneda()})
+	}
+	
+	method aparecenTodas(){
+		monedasActuales.forEach({moneda => moneda.aparicion()})
+	}
+	
+	method quitarMoneda(){
+		if(monedasActuales.size() > 1){
+		monedasActuales.remove(monedasActuales.anyOne())
+		}
+	}
+}
+
