@@ -1,73 +1,32 @@
 import wollok.game.*
 
-object explosion{
-	method aparecer(posicion){
-		fuego1.aparecer(posicion)
-		fuego2.aparecer(posicion.right(1))
-		fuego3.aparecer(posicion.left(1))
-		fuego4.aparecer(posicion.up(1))
-		fuego5.aparecer(posicion.down(1))
+class Explosion{
+	var property posicionCentral
+	
+	method aparecer(){
+		const fuegos = #{new Fuego(position = posicionCentral), 
+					 new Fuego(position = posicionCentral.right(1)),
+					 new Fuego(position = posicionCentral.left(1)),
+					 new Fuego(position = posicionCentral.up(1)),
+					 new Fuego(position = posicionCentral.down(1))
+					 }
+		fuegos.forEach({fuego => fuego.aparecer()})
+		
 	}
 }
 
-object fuego1{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
-	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
-	}
-}
 
-object fuego2{
+class Fuego{
 	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
+	
+	var property position // hay que darle una posicion al instanciarlo
+	method aparecer(){
+		game.addVisual(self)
 		game.schedule(2000,{game.removeVisual(self)})
 	}
 	
 	method colisionoCon(pj){
 		pj.perderVida(30)
-		console.println(pj.vida())
-	}
-}
-object fuego3{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
-	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
-	}
-}
-object fuego4{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
-	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
-	}
-}
-object fuego5{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
-	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
+		//console.println(pj.vida())
 	}
 }

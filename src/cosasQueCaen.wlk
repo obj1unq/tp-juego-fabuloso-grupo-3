@@ -66,9 +66,10 @@ object botiquin {
 	}
 }
 
-object bomba {
+class Bomba{
 	var property image = "bomba.png"
 	var property position = randomizer.emptyOrPj()
+	const property explosion = new Explosion(posicionCentral = position)
 	
 	method caer(){
 		position = randomizer.emptyOrPj()
@@ -77,8 +78,9 @@ object bomba {
 	}
 	
 	method explotar(){
+		explosion.posicionCentral(position)
 		game.removeVisual(self)
-		explosion.aparecer(position)
+		explosion.aparecer()
 	}
 	
 	method colisionoCon(pj){

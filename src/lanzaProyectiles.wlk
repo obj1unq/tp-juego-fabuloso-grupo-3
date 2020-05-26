@@ -18,6 +18,23 @@ object lanzaProyectiles {
 	}
 }
 
+object lanzaBombas{
+	const bombasActuales = #{new Bomba()}
+	
+	method inicio(){
+		game.onTick(10000, "lanzaBombasActivado", {self.lanzarTodo()})
+		game.onTick(50000, "agregarBombas", {self.agregarBomba()})
+	}
+	
+	method lanzarTodo(){
+		bombasActuales.forEach({proyectil => proyectil.caer()})
+	}
+	
+	method agregarBomba(){
+		bombasActuales.add(new Bomba())
+	}
+}
+
 object controladorMonedas{
 	const monedasActuales=#{new Moneda(), new Moneda(), new Moneda(), new Moneda(), new Moneda()}
 	
