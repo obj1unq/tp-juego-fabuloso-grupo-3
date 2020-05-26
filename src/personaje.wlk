@@ -5,6 +5,8 @@ object personaje {
 	var property image = "pepita1.png"
 	var property position = game.at(0,0)
 	
+	
+	var property puntos = 0
 	var property vida = 100
 	var property reduccionDeVelocidad = 0
 	
@@ -18,5 +20,13 @@ object personaje {
 	
 	method perderVelocidad(cantidad){
 		reduccionDeVelocidad += cantidad
+	}
+	
+	method ganarPuntos(cantidad){
+		puntos += cantidad
+	}
+	
+	method perderPuntos(cantidad){
+		puntos = 0.max(puntos - cantidad)
 	}
 }

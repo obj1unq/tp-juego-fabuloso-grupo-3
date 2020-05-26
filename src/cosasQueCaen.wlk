@@ -85,9 +85,11 @@ object bomba {
 	}
 }
 
-object moneda{
+class Moneda{
 	const property image= "moneda.png"
 	var property position = randomizer.emptyPosition()
+	
+	const property puntosQueOtorga = 20
 	
 	method aparicion(){
 		position = randomizer.emptyPosition()
@@ -97,7 +99,7 @@ object moneda{
 	}
 	
 	method colisionoCon(pj){
-		//acá va un metodo para sumar puntos!!!!
+		pj.ganarPuntos(puntosQueOtorga)
 		game.removeVisual(self)
 	}
 }
