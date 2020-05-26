@@ -14,9 +14,9 @@ object cronometro {
 			else { 
 				segundos += 1
 			}
-			console.println(minutos.toString() +
-							":" + 
-							segundos.toString())
+			//console.println(minutos.toString() +
+			//				":" + 
+			//				segundos.toString())
 		}
 		else { 
 			console.println("Perdiste, sobreviviste: " + minutos + ":" + segundos + " y tu puntaje es:" + personaje.puntos())
