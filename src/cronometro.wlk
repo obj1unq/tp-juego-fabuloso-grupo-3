@@ -20,6 +20,7 @@ object cronometro {
 		}
 		else { 
 			console.println("Perdiste, sobreviviste: " + minutos + ":" + segundos + " y tu puntaje es:" + personaje.puntos())
+			game.clear()
 		}
 	}
 }

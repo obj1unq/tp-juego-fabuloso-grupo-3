@@ -14,10 +14,16 @@ program juego{
 	game.ground("pastito.png")
 	game.cellSize(64)
 	//VISUAL
-	game.addVisualCharacter(personaje)
-
+	//game.addVisualCharacter(personaje)
+	game.addVisual(personaje)
 	
 	//PROGRAMACION
+	
+	keyboard.w().onPressDo { personaje.moverArriba() }
+	keyboard.s().onPressDo { personaje.moverAbajo() }
+	keyboard.a().onPressDo { personaje.moverIzquierda() }
+	keyboard.d().onPressDo { personaje.moverDerecha() }
+	
 	
 	game.onCollideDo(personaje, { otro => otro.colisionoCon(personaje) })	
 	game.onTick(1000, "cronometro", { cronometro.sumar() })
