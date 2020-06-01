@@ -36,7 +36,7 @@ object lanzaBombas{
 }
 
 object controladorMonedas{
-	var property monedasActuales=#{new Moneda(), new Moneda(), new Moneda(), new Moneda(), new Moneda()}
+	var property monedasActuales=[new Moneda(), new Moneda(), new Moneda(), new Moneda(), new Moneda()]
 	
 	method inicio(){
 		game.onTick(10000,"apareceMoneda", {self.aparecenTodas()})
@@ -49,7 +49,7 @@ object controladorMonedas{
 	
 	method quitarMoneda(){
 		if(monedasActuales.size() > 1){
-		monedasActuales.remove(monedasActuales.anyOne())
+		monedasActuales.remove(monedasActuales.head())
 		console.println("moneda eliminada, quedan " + monedasActuales.size())
 		}
 	}
