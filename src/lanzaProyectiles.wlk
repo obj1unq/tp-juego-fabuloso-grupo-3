@@ -5,7 +5,7 @@ object lanzaProyectiles {
 	const proyectilesActuales = [new Proyectil()]
 	
 	method iniciar(){
-		game.onTick(3000, "lanzaProyectilesActivado", {self.lanzarTodo()})
+		game.onTick(3037, "lanzaProyectilesActivado", {self.lanzarTodo()})
 		game.onTick(20000, "agregarProyectiles", {self.agregarProyectil()})
 	}
 	
@@ -22,7 +22,7 @@ object lanzaBombas{
 	const bombasActuales = #{new Bomba()}
 	
 	method inicio(){
-		game.onTick(10000, "lanzaBombasActivado", {self.lanzarTodo()})
+		game.onTick(8429, "lanzaBombasActivado", {self.lanzarTodo()})
 		game.onTick(50000, "agregarBombas", {self.agregarBomba()})
 	}
 	
@@ -36,11 +36,11 @@ object lanzaBombas{
 }
 
 object controladorMonedas{
-	const monedasActuales=#{new Moneda(), new Moneda(), new Moneda(), new Moneda(), new Moneda()}
+	var property monedasActuales=#{new Moneda(), new Moneda(), new Moneda(), new Moneda(), new Moneda()}
 	
 	method inicio(){
 		game.onTick(10000,"apareceMoneda", {self.aparecenTodas()})
-		game.onTick(40000,"menosMonedas", {self.quitarMoneda()})
+		game.onTick(35000,"menosMonedas", {self.quitarMoneda()})
 	}
 	
 	method aparecenTodas(){
@@ -50,6 +50,7 @@ object controladorMonedas{
 	method quitarMoneda(){
 		if(monedasActuales.size() > 1){
 		monedasActuales.remove(monedasActuales.anyOne())
+		console.println("moneda eliminada, quedan " + monedasActuales.size())
 		}
 	}
 }

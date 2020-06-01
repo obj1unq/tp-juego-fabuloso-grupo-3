@@ -21,16 +21,17 @@ program juego{
 	game.onTick(1000, "cronometro", { cronometro.sumar() })
 	//PROYECTILES
 	lanzaProyectiles.iniciar()
+	//MONEDAS
+	controladorMonedas.inicio()
 	
 	//const bomba = new Bomba()
 	//game.onTick(5000, "", {bomba.caer()})
 	
-	//game.schedule(5000, {lanzaBombas.inicio()})
+	game.schedule(5000, {lanzaBombas.inicio()})
 	
 	//BOTIQUIN
-	game.onTick(15000,"apareceBotiquin",{botiquin.aparicion()})
-	//MONEDAS
-	controladorMonedas.inicio()
+	game.onTick(40000,"apareceBotiquin",{botiquin.aparicion()})
+	
 	
 	// START
 	

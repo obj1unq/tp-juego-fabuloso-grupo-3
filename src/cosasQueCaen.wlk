@@ -28,7 +28,7 @@ class Proyectil {
 		self.estado(cayendo)
 		self.position(randomizer.emptyOrPj())
 		game.addVisual(self)
-		game.schedule(1000, { self.impacto() })
+		game.schedule(997, { self.impacto() })
 	}
 	
 	method impacto() {
@@ -74,7 +74,7 @@ class Bomba{
 	method caer(){
 		position = randomizer.emptyOrPj()
 		game.addVisual(self)
-		game.schedule(1000,{self.explotar()})
+		game.schedule(1013,{self.explotar()})
 	}
 	
 	method explotar(){
