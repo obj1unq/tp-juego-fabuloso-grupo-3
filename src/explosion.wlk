@@ -1,73 +1,41 @@
 import wollok.game.*
+import personaje.*
 
-object explosion{
-	method aparecer(posicion){
-		fuego1.aparecer(posicion)
-		fuego2.aparecer(posicion.right(1))
-		fuego3.aparecer(posicion.left(1))
-		fuego4.aparecer(posicion.up(1))
-		fuego5.aparecer(posicion.down(1))
-	}
-}
-
-object fuego1{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
+class Explosion{
+	var property posicionCentral = game.at(5,5)
+	const fuego1 = new Fuego(position = posicionCentral)
+	const fuego2 = new Fuego(position =posicionCentral.right(1))
+	const fuego3 = new Fuego(position =posicionCentral.left(1))
+	const fuego4 = new Fuego(position =posicionCentral.down(1))
+	const fuego5 = new Fuego(position =posicionCentral.up(1))
 	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
+	const todosLosFuegos = #{fuego1,fuego2,fuego3,fuego4,fuego5}
+	
+	method aparecer(){
+		fuego1.position(posicionCentral) 
+		fuego2.position(posicionCentral.right(1))
+		fuego3.position(posicionCentral.left(1))
+		fuego4.position(posicionCentral.up(1))
+		fuego5.position(posicionCentral.down(1))
+		todosLosFuegos.forEach({fuego => fuego.aparecer()})
 	}
 }
 
-object fuego2{
+
+class Fuego{
 	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
 	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
+	var property position // hay que darle una posicion al instanciarlo
+	method aparecer(){
+		if(game.getObjectsIn(position).isEmpty() or	game.getObjectsIn(position).contains(personaje)){
+			game.addVisual(self)
+			game.schedule(2000,{game.removeVisual(self)})
+		}
 	}
-}
-object fuego3{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
+
 	
-	method colisionoCon(pj){
+method colisionoCon(pj){
 		pj.perderVida(30)
-		console.println(pj.vida())
-	}
-}
-object fuego4{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
-	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
-	}
-}
-object fuego5{
-	const property image = "fueguito.png"
-	method aparecer(posicion){
-		game.addVisualIn(self, posicion)
-		game.schedule(2000,{game.removeVisual(self)})
-	}
-	
-	method colisionoCon(pj){
-		pj.perderVida(30)
-		console.println(pj.vida())
+		//console.println(pj.vida())
 	}
 }

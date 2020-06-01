@@ -28,7 +28,7 @@ class Proyectil {
 		self.estado(cayendo)
 		self.position(randomizer.emptyOrPj())
 		game.addVisual(self)
-		game.schedule(1000, { self.impacto() })
+		game.schedule(997, { self.impacto() })
 	}
 	
 	method impacto() {
@@ -66,19 +66,21 @@ object botiquin {
 	}
 }
 
-object bomba {
+class Bomba{
 	var property image = "bomba.png"
 	var property position = randomizer.emptyOrPj()
+	const property explosion = new Explosion(posicionCentral = position)
 	
 	method caer(){
 		position = randomizer.emptyOrPj()
 		game.addVisual(self)
-		game.schedule(1000,{self.explotar()})
+		game.schedule(1013,{self.explotar()})
 	}
 	
 	method explotar(){
+		explosion.posicionCentral(position)
 		game.removeVisual(self)
-		explosion.aparecer(position)
+		explosion.aparecer()
 	}
 	
 	method colisionoCon(pj){
