@@ -7,7 +7,7 @@ import explosion.*
 //PROYECTIL BASE
 class Proyectil {
 	var property imagen = "piedra.png"
-	
+	// aca cambio cris
 	// No es importante donde inicia, ya que se va a randomizar
 	// su posicion en el corto plazo
 	var property position = randomizer.emptyOrPj()
@@ -105,4 +105,3 @@ class Moneda{
 		game.removeVisual(self)
 	}
 }
-
