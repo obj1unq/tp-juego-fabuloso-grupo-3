@@ -4,8 +4,8 @@ import personaje.*
 object cronometro {
 	
 	method ponerCronometro() {
-		game.addVisual(minutos)
-		game.addVisual(segundos)
+		minutos.poner()
+		segundos.poner()
 	}
 	
 	method sumar() {
@@ -21,16 +21,16 @@ object cronometro {
 		}
 		else { 
 			console.println("Perdiste, sobreviviste: " + minutos.numero() + ":" +
-							segundos.numero() + " y tu puntaje es:" + personaje.puntos())
-			game.schedule(3000, {game.clear() })
+							segundos.numero() + " y tu puntaje es: " + personaje.puntos())
+			game.clear()
 		}
 	}
 }
 
-object minutos {
-	var property position = game.at(5, game.height() - 1)
+class Reloj {
+	var property position = game.at(0,0)
 	var property image = "Numeros/num-0.png"
-	
+		
 	var numero = 0
 	
 	method numero() = numero
@@ -39,20 +39,23 @@ object minutos {
 		numero += 1
 		image = "Numeros/num-" + numero + ".png"
 	}
+	
+	method poner() {
+		position = game.at(self.columna(), game.height() - 1)
+		game.addVisual(self)
+	}
+	
+	method columna()
 }
 
-object segundos {
-	var property position = game.at(6, game.height() - 1)
-	var property image = "Numeros/num-0.png"
+object minutos inherits Reloj {
 	
-	var numero = 0
-	
-	method numero() = numero
-	
-	method sumar() {
-		numero += 1
-		image = "Numeros/num-" + numero + ".png"
-	}
+	override method columna() = 5
+}
+
+object segundos inherits Reloj {
+
+	override method columna() = 6
 	
 	method ponerEnCero() {
 		numero = 0
