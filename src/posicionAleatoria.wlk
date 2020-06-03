@@ -16,14 +16,14 @@ object randomizer{
 	}
 	
 	// Este metodo devuelve una posicion aleatoria que
-	// puede ser vacía o la del personaje.
+	//  puede ser vacía o la del personaje.
 	method emptyOrPj(){ 
 		const positionRandom = game.at(
 			0.randomUpTo(game.width() - 1).truncate(0),
 			0.randomUpTo(game.height() - 1).truncate(0))
 		
 		if(game.getObjectsIn(positionRandom).isEmpty() or
-		   game.getObjectsIn(positionRandom).contains(personaje)) {
+		   (game.getObjectsIn(positionRandom).contains(personaje) and game.getObjectsIn(positionRandom).size() == 1)) {
 			return positionRandom
 		} 
 		else {
