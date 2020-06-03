@@ -23,7 +23,7 @@ object randomizer{
 			0.randomUpTo(game.height() - 1).truncate(0))
 		
 		if(game.getObjectsIn(positionRandom).isEmpty() or
-		   game.getObjectsIn(positionRandom).contains(personaje)) {
+		   (game.getObjectsIn(positionRandom).contains(personaje) and game.getObjectsIn(positionRandom).size() == 1)) {
 			return positionRandom
 		} 
 		else {
