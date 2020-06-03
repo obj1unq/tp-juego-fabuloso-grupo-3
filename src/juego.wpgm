@@ -8,7 +8,7 @@ import guarda.*
 program juego{
 	
 	// JUEGO
-	game.title("veremos")
+	game.title("El guachin")
 	game.height(7)
 	game.width(7)
 	game.ground("pastito.png")
