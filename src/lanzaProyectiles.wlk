@@ -50,7 +50,6 @@ object controladorMonedas{
 	method quitarMoneda(){
 		if(monedasActuales.size() > 1){
 			monedasActuales.remove(monedasActuales.head())
-			console.println("moneda eliminada, quedan " + monedasActuales.size())
 		}
 	}
 }

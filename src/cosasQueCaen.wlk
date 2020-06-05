@@ -7,45 +7,38 @@ import explosion.*
 //PROYECTIL BASE
 class Proyectil {
 	var property imagen = "piedra.png"
-	
-	// No es importante donde inicia, ya que se va a randomizar
-	// su posicion en el corto plazo
+	var property estado = cayendo // Esto determina si el objeto hace daño o no, y que imagen tiene por polimorfismo
 	var property position = randomizer.emptyOrPj()
-	 
-	// Esto determina si el objeto hace daño o no, y que imagen tiene por polimorfismo
-	var property estado = cayendo
-	
 	const property danioNormal = 20
 	
 	method image(){
 		return estado.imagen(self)
 	}
 	
-	method caer() { 
-		// Todos los objetos que dañen al personaje deberian entender
-		// este msj y tener una aplicacion parecida
-		
-		self.estado(cayendo)
+	method caer() {
+		self.comprobarQueNoSeEcuentraEnElJuego() 		
 		self.position(randomizer.emptyOrPj())
+		self.estado(cayendo)
 		game.addVisual(self)
-		game.schedule(997, { self.impacto() })
+		game.schedule(977, { self.impacto() })
+	}
+	
+	method comprobarQueNoSeEcuentraEnElJuego(){
+		if(game.hasVisual(self)){
+			game.removeVisual(self)
+		}
 	}
 	
 	method impacto() {
-		
+		self.comprobarQueNoSeEcuentraEnElJuego()
 		self.estado(normal)
-		// Chequea si el personaje está en la misma celda cuando hay cambio de estado
-		if(game.getObjectsIn(position).contains(personaje)) {
-			self.colisionoCon(personaje)
-		}
-		game.schedule(1000,{game.removeVisual(self)})
+		game.addVisual(self)
+		game.schedule(500,{game.removeVisual(self)})
 	}
 	
 	method colisionoCon(pj) {
 		pj.perderVida(estado.danio(self))
-		console.println(pj.vida())
 	}
-	
 }
 
 object botiquin {
@@ -90,7 +83,6 @@ class Bomba{
 class Moneda{
 	const property image= "moneda.png"
 	var property position = randomizer.emptyPosition()
-	
 	const property puntosQueOtorga = 20
 	
 	method aparicion(){
