@@ -7,7 +7,6 @@ object guarda{
 		if(not (posicionActual == game.at(game.width() - 1 ,game.height() -1))){
 			game.addVisual(new CeldaDeGuarda(position = posicionActual))
 			posicionActual = posicionActual.right(1)
-			console.println(posicionActual)
 			self.ponerGuarda()
 		}
 		game.addVisual(new CeldaDeGuarda(position = posicionActual))
