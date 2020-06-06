@@ -1,5 +1,6 @@
 import wollok.game.*
 import personaje.*
+import vida.*
 
 class Explosion{
 	var property posicionCentral = game.at(5,5)
@@ -38,5 +39,6 @@ class Fuego{
 	
 method colisionoCon(pj){
 		pj.perderVida(30)
+		vida.modificarVida()
 	}
 }
