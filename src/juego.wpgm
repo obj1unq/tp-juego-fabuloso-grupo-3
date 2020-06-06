@@ -4,6 +4,7 @@ import cosasQueCaen.*
 import cronometro.*
 import lanzaProyectiles.*
 import guarda.*
+import vida.*
 
 program juego{
 	
@@ -40,7 +41,7 @@ program juego{
 	//BOTIQUIN
 	game.onTick(40000,"apareceBotiquin",{botiquin.aparicion()})
 	guarda.ponerGuarda()
-	
+	vida.mostrarVida()
 	// START
 	
 	game.start()
