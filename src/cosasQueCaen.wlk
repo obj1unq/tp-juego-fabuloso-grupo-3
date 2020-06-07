@@ -66,24 +66,22 @@ object botiquin {
 }
 
 
-class Bomba{
-	var property image = "bomba.png"
-	var property position = randomizer.emptyOrPj()
+class Bomba inherits Proyectil{
+	var property imagen = "bomba.png"
 	const property explosion = new Explosion(posicionCentral = position)
+	const property danioNormal = 0
 	
-	method caer(){
-		position = randomizer.emptyOrPj()
+	override method impacto(){
+		self.comprobarQueNoSeEcuentraEnElJuego()
+		self.estado(normal)
 		game.addVisual(self)
-		game.schedule(1013,{self.explotar()})
+		game.schedule(500,{self.explotar()})
 	}
 	
 	method explotar(){
 		explosion.posicionCentral(position)
 		game.removeVisual(self)
 		explosion.aparecer()
-	}
-	
-	method colisionoCon(pj){
 	}
 }
 
