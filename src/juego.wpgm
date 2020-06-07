@@ -33,7 +33,7 @@ program juego{
 	//MONEDAS
 	controladorMonedas.inicio()
 	
-	//const bomba = new Bomba()
+	//const bomba =  new Bomba()
 	//game.onTick(5000, "", {bomba.caer()})
 	
 	game.schedule(5000, {lanzaBombas.inicio()})
