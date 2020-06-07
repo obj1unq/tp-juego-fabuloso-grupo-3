@@ -50,12 +50,12 @@ class Reloj {
 
 object minutos inherits Reloj {
 	
-	override method columna() = 5
+	override method columna() = game.height() - 2
 }
 
 object segundos inherits Reloj {
 
-	override method columna() = 6
+	override method columna() = game.height() - 1
 	
 	method ponerEnCero() {
 		numero = 0
