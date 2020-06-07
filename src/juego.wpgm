@@ -26,11 +26,7 @@ program juego{
 	keyboard.d().onPressDo { personaje.moverDerecha() }
 	
 	
-	game.onCollideDo(personaje, { otro => otro.colisionoCon(personaje) })	
-	
-	//CRONOMETRO
-	cronometro.ponerCronometro()
-	game.onTick(1000, "cronometro", { cronometro.sumar() })
+	game.onCollideDo(personaje, { otro => otro.colisionoCon(personaje) })
 	
 	//PROYECTILES
 	lanzaPiedras.iniciar()
@@ -44,8 +40,17 @@ program juego{
 	
 	//BOTIQUIN
 	game.onTick(40000,"apareceBotiquin",{botiquin.aparicion()})
+	
+	//GUARDA
 	guarda.ponerGuarda()
+	
+	//VIDA
 	vida.mostrarVida()
+	
+	//CRONOMETRO
+	cronometro.ponerCronometro()
+	game.onTick(1000, "cronometro", { cronometro.sumar() })
+	
 	// START
 	
 	game.start()
