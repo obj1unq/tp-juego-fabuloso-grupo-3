@@ -27,7 +27,11 @@ program juego{
 	
 	
 	game.onCollideDo(personaje, { otro => otro.colisionoCon(personaje) })	
+	
+	//CRONOMETRO
+	cronometro.ponerCronometro()
 	game.onTick(1000, "cronometro", { cronometro.sumar() })
+	
 	//PROYECTILES
 	lanzaPiedras.iniciar()
 	//MONEDAS
