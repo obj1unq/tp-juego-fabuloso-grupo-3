@@ -1,8 +1,8 @@
 import cosasQueCaen.*
 import wollok.game.*
 
-object lanzaProyectiles {
-	const proyectilesActuales = [new Proyectil()]
+object lanzaPiedras {
+	const proyectilesActuales = [new Piedra()]
 	
 	method iniciar(){
 		game.onTick(3037, "lanzaProyectilesActivado", {self.lanzarTodo()})
@@ -14,7 +14,7 @@ object lanzaProyectiles {
 	}	
 	
 	method agregarProyectil(){
-		proyectilesActuales.add(new Proyectil())
+		proyectilesActuales.add(new Piedra())
 	}
 }
 

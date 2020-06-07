@@ -7,10 +7,8 @@ import vida.*
 
 //PROYECTIL BASE
 class Proyectil {
-	var property imagen = "piedra.png"
 	var property estado = cayendo // Esto determina si el objeto hace daño o no, y que imagen tiene por polimorfismo
 	var property position = randomizer.emptyOrPj()
-	const property danioNormal = 20
 	
 	method image(){
 		return estado.imagen(self)
@@ -43,6 +41,11 @@ class Proyectil {
 	}
 }
 
+class Piedra inherits Proyectil{
+	var property imagen = "piedra.png"
+	const property danioNormal = 20
+}
+
 object botiquin {
 	var property image = "botiquin.png"
 	var property position = randomizer.emptyPosition()
@@ -61,6 +64,7 @@ object botiquin {
 		vida.modificarVida()
 	}
 }
+
 
 class Bomba{
 	var property image = "bomba.png"
