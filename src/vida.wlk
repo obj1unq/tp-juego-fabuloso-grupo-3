@@ -2,7 +2,7 @@ import wollok.game.*
 import personaje.*
 
 
-object vida {
+object vidaPersonaje {
 	
 	method mostrarVida(){
 		corazonIzquierdo.poner()

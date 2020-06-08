@@ -37,7 +37,6 @@ class Proyectil {
 	
 	method colisionoCon(pj) {
 		pj.perderVida(estado.danio(self))
-		vida.modificarVida()
 	}
 }
 
@@ -61,7 +60,6 @@ object botiquin {
 		pj.ganarVida(30)
 		console.println(pj.vida())
 		game.removeVisual(self)
-		vida.modificarVida()
 	}
 }
 

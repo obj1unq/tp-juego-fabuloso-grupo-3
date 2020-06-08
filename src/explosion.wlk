@@ -39,6 +39,5 @@ class Fuego{
 	
 method colisionoCon(pj){
 		pj.perderVida(30)
-		vida.modificarVida()
 	}
 }

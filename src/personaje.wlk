@@ -1,5 +1,6 @@
 import wollok.game.*
 import posicionAleatoria.*
+import vida.*
 
 object personaje {
 	var property image = "elGuachinDeFrente.png"
@@ -41,10 +42,12 @@ object personaje {
 	
 	method perderVida(cantidad){
 		vida = (vida - cantidad).max(0)
+		vidaPersonaje.modificarVida()
 	}
 	
 	method ganarVida(cantidad){
 		vida =(vida + cantidad).min(100)
+		vidaPersonaje.modificarVida()
 	}
 	
 	method perderVelocidad(cantidad){
