@@ -5,55 +5,26 @@ import cronometro.*
 import lanzaProyectiles.*
 import guarda.*
 import vida.*
+import visualScreen.*
 
 program juego{
 	
 	// JUEGO
 	game.title("El guachin")
-	game.height(7)
-	game.width(7)
+	game.height(8)
+	game.width(8)
 	game.ground("pastito.png")
 	game.cellSize(64)
-	//VISUAL
-	//game.addVisualCharacter(personaje)
-	game.addVisual(personaje)
 	
-	//PROGRAMACION
+	//PRESENTACION
+	visualScreen.inicializar()
+	keyboard.enter().onPressDo({
+		if (visualScreen.inicializada()) {
+			visualScreen.quitar()
+		}
+		visualScreen.newGame()
+	})
 	
-	keyboard.w().onPressDo { personaje.moverArriba() }
-	keyboard.s().onPressDo { personaje.moverAbajo() }
-	keyboard.a().onPressDo { personaje.moverIzquierda() }
-	keyboard.d().onPressDo { personaje.moverDerecha() }
-	
-	
-	game.onCollideDo(personaje, { otro => otro.colisionoCon(personaje) })
-	
-	//PROYECTILES
-	lanzaPiedras.iniciar()
-	const piedra = new PiedraQueSeMueve() 
-	game.onTick(5000, "cae piedra",{piedra.caer()})
-	//MONEDAS
-	controladorMonedas.inicio()
-	
-	//const bomba =  new Bomba()
-	//game.onTick(5000, "", {bomba.caer()})
-	
-	game.schedule(5000, {lanzaBombas.inicio()})
-	
-	//BOTIQUIN
-	game.onTick(40000,"apareceBotiquin",{botiquin.aparicion()})
-	
-	//GUARDA
-	guarda.ponerGuarda()
-	
-	//VIDA
-	vida.mostrarVida()
-	
-	//CRONOMETRO
-	cronometro.ponerCronometro()
-	game.onTick(1000, "cronometro", { cronometro.sumar() })
-	
-	// START
-	
+	//START
 	game.start()
 }
