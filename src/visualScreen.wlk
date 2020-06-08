@@ -60,6 +60,8 @@ object visualScreen {
 		game.onTick(1000, "cronometro", { cronometro.sumar() })
 		
 		//PROYECTILES
+		const piedraMueve = new PiedraQueSeMueve()
+		game.onTick(5000, "piedraquesemueve", {piedraMueve.caer()})
 		lanzaPiedras.iniciar()
 		
 		//MONEDAS
