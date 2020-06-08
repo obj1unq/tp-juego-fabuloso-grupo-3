@@ -40,6 +40,50 @@ class Proyectil {
 	}
 }
 
+class PiedraQueSeMueve inherits Proyectil{
+	var property imagen = "piedra.png"
+	const property danioNormal = 20
+	var property cantidadMovimientos = 0
+	
+	override method impacto() {
+		self.comprobarQueNoSeEcuentraEnElJuego()
+		self.estado(normal)
+		game.addVisual(self)
+		game.schedule(500,{self.moverseHaciaElPersonaje()})		
+		cantidadMovimientos = 0
+	}
+	
+	method moverseHaciaElPersonaje() {
+		if(cantidadMovimientos == 2) {
+			game.removeVisual(self)
+		}
+		else {
+			self.position(self.unoHaciaPersonaje())
+			game.schedule(500,{self.moverseHaciaElPersonaje()})
+			cantidadMovimientos += 1
+		}
+	}
+	method unoHaciaPersonaje() {
+		if(personaje.position().x() > self.position().x() and celda.vaciaOElPersonaje(position.right(1))) {
+			return position.right(1)
+		}
+		else if(personaje.position().x() < self.position().x() and celda.vaciaOElPersonaje(position.left(1))) {
+			return position.left(1)
+		}
+		else if(personaje.position().y() > self.position().y() and celda.vaciaOElPersonaje(position.up(1))) {
+			return position.up(1)
+		}		
+		else if(personaje.position().y() < self.position().y() and celda.vaciaOElPersonaje(position.down(1))) {
+			return position.down(1)
+		}	
+		else {
+			return position
+		}	
+	}
+}
+
+
+
 class Piedra inherits Proyectil{
 	var property imagen = "piedra.png"
 	const property danioNormal = 20
@@ -100,3 +144,4 @@ class Moneda{
 		game.removeVisual(self)
 	}
 }
+

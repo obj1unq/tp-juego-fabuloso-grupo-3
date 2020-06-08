@@ -31,3 +31,11 @@ object randomizer{
 		}
 	}	
 }
+
+object celda {
+	method vaciaOElPersonaje(coordenada) {
+		return(game.getObjectsIn(coordenada).isEmpty() or	(game.getObjectsIn(coordenada).contains(personaje) and game.getObjectsIn(coordenada).size() == 1))
+		
+	}
+	
+}
