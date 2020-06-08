@@ -1,6 +1,7 @@
 import cosasQueCaen.*
 import wollok.game.*
 
+
 object lanzaPiedras {
 	const proyectilesActuales = [new Piedra()]
 	

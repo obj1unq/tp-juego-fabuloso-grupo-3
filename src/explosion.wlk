@@ -1,6 +1,7 @@
 import wollok.game.*
 import personaje.*
 import vida.*
+import posicionAleatoria.*
 
 class Explosion{
 	var property posicionCentral = game.at(5,5)
@@ -30,7 +31,7 @@ class Fuego{
 	const property image = "fueguito.png"
 	var property position // hay que darle una posicion al instanciarlo
 	method aparecer(){
-		if(game.getObjectsIn(position).isEmpty() or	(game.getObjectsIn(position).contains(personaje) and game.getObjectsIn(position).size() == 1)){
+		if(celda.vaciaOElPersonaje(position)){
 			game.addVisual(self)
 			game.schedule(2000,{game.removeVisual(self)})
 		}

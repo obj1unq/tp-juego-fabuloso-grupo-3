@@ -30,6 +30,8 @@ program juego{
 	
 	//PROYECTILES
 	lanzaPiedras.iniciar()
+	const piedra = new PiedraQueSeMueve() 
+	game.onTick(5000, "cae piedra",{piedra.caer()})
 	//MONEDAS
 	controladorMonedas.inicio()
 	
