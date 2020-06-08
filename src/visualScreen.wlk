@@ -35,7 +35,7 @@ object visualScreen {
 		guarda.ponerGuarda()
 		
 		//VIDA
-		vida.mostrarVida()
+		vidaPersonaje.mostrarVida()
 		
 		//CRONOMETRO
 		cronometro.ponerCronometro()
