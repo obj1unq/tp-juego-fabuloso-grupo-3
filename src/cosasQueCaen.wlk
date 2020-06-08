@@ -103,7 +103,7 @@ class Piedra inherits Proyectil{
 }
 
 class BolaDePinchos inherits Proyectil{
-	var property image = "bolaDePinchos.png"
+	var property image = "bolaDePinchos.png" //nose porque no aparece su imagen :(
 	const property danioNormal = 10
 	
 }
