@@ -17,6 +17,8 @@ object visualScreen {
 		if (!inicializada) {
 			game.addVisual(self)
 			inicializada = true
+			self.ponerPersonaje()
+			game.onTick(300, "personaje presentacion", {self.moverPersonaje()})
 		}
 	}
 	
@@ -24,11 +26,27 @@ object visualScreen {
 		if (inicializada) {
 			game.removeVisual(self)
 			inicializada = false
+			game.removeVisual(personaje)
+			game.removeTickEvent("personaje presentacion")
 		}
+	}
+	
+	method ponerPersonaje() {
+		game.addVisual(personaje)
+		personaje.position(game.at(0,2))
+	}
+	
+	method moverPersonaje() {
+		if(personaje.position().x() < game.width() - 1) {
+			personaje.moverDerecha()
+		}
+		else { personaje.position(game.at(0,2)) }
 	}
 	
 	method newGame() {
 		//PERSONAJE
+		personaje.image("elGuachinDeFrente.png")
+		personaje.position(game.at(0,0))
 		game.addVisual(personaje)
 		
 		//GUARDA
