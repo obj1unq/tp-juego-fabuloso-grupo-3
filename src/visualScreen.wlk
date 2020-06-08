@@ -43,6 +43,7 @@ object visualScreen {
 		
 		//PROYECTILES
 		lanzaPiedras.iniciar()
+		lanzaBolasDePinchos.iniciar()
 		
 		//MONEDAS
 		controladorMonedas.inicio()

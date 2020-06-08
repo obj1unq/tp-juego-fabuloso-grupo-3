@@ -43,6 +43,25 @@ class Proyectil {
 class Piedra inherits Proyectil{
 	var property imagen = "piedra.png"
 	const property danioNormal = 20
+	
+	override method colisionoCon(pj){
+		if (self.estado() == normal){
+			pj.perderVida(estado.danio(self))
+			pj.irAposicionAnterior()
+		}
+	}
+	override method impacto() {
+		self.comprobarQueNoSeEcuentraEnElJuego()
+		self.estado(normal)
+		game.addVisual(self)
+		game.schedule(7500,{game.removeVisual(self)})
+	}
+}
+
+class BolaDePinchos inherits Proyectil{
+	var property image = "bolaDePinchos.png"
+	const property danioNormal = 10
+	
 }
 
 object botiquin {

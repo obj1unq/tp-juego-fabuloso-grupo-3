@@ -18,6 +18,23 @@ object lanzaPiedras {
 	}
 }
 
+object lanzaBolasDePinchos{
+	const proyectilesActuales = [new BolaDePinchos()]
+	
+	method iniciar(){
+		game.onTick(3037, "lanzaProyectilesActivado", {self.lanzarTodo()})
+		game.onTick(20000, "agregarProyectiles", {self.agregarProyectil()})
+	}
+	
+	method lanzarTodo(){
+		proyectilesActuales.forEach({proyectil => proyectil.caer()})
+	}	
+	
+	method agregarProyectil(){
+		proyectilesActuales.add(new BolaDePinchos())
+	}
+}
+
 object lanzaBombas{
 	const bombasActuales = #{new Bomba()}
 	

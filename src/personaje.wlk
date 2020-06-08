@@ -5,15 +5,20 @@ import vida.*
 object personaje {
 	var property image = "elGuachinDeFrente.png"
 	var property position = game.at(0,0)
+	var property posicionAnterior
 	
 	
 	var property puntos = 0
 	var property vida = 100
 	var property reduccionDeVelocidad = 0
 	
+	method irAposicionAnterior(){
+		position = posicionAnterior
+	}
 	method moverArriba(){
 		if(position.y() < game.height() - 2){
 			position = position.up(1)
+			self.posicionAnterior(position.down(1))
 		}
 		image = "elGuachinArriba.png"
 	}
@@ -22,6 +27,7 @@ object personaje {
 	method moverAbajo(){
 		if(position.y() > 0){
 			position = position.down(1)
+			self.posicionAnterior(position.up(1))
 		}
 		image = "elGuachinDeFrente.png"
 	}
@@ -29,6 +35,7 @@ object personaje {
 	method moverDerecha(){
 		if(position.x() < game.width() - 1){
 			position = position.right(1)
+			self.posicionAnterior(position.left(1))
 		}
 		image = "elGuachinDerecha.png"
 	}
@@ -36,6 +43,7 @@ object personaje {
 	method moverIzquierda(){
 		if(position.x() > 0){
 			position = position.left(1)
+			self.posicionAnterior(position.right(1))
 		}
 		image = "elGuachinIzquierda.png"
 	}
