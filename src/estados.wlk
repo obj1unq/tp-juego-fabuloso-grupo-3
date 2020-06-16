@@ -9,6 +9,10 @@ object normal {
 	method danio(objeto){
 		return objeto.danioNormal()
 	}
+	
+	method dejaPasar(){
+		return true
+	}
 }
 
 object cayendo { 
@@ -21,5 +25,23 @@ object cayendo {
 	
 	method danio(objeto) {
 		return 0
+	}	
+	
+	method dejaPasar(){
+		return true
+	}
+}
+
+object afirmado{
+	method imagen(objeto){
+		return objeto.imagen()
+	}
+	
+	method danio(objeto) {
+		return 0
+	}
+	
+	method dejaPasar(){
+		return false
 	}
 }

@@ -15,24 +15,26 @@ class Proyectil {
 	}
 	
 	method caer() {
-		self.comprobarQueNoSeEcuentraEnElJuego() 		
+		self.removerSiEsta() 		
 		self.position(randomizer.emptyOrPj())
 		self.estado(cayendo)
 		game.addVisual(self)
 		game.schedule(977, { self.impacto() })
 	}
 	
-	method comprobarQueNoSeEcuentraEnElJuego(){
+	method removerSiEsta(){
 		if(game.hasVisual(self)){
 			game.removeVisual(self)
 		}
 	}
 	
+	method efectoPostImpacto()
+	
 	method impacto() {
-		self.comprobarQueNoSeEcuentraEnElJuego()
+		self.removerSiEsta()
 		self.estado(normal)
 		game.addVisual(self)
-		game.schedule(500,{game.removeVisual(self)})
+		self.efectoPostImpacto()
 	}
 	
 	method colisionoCon(pj) {
@@ -45,11 +47,12 @@ class PiedraQueSeMueve inherits Proyectil{
 	const property danioNormal = 20
 	var property cantidadMovimientos = 0
 	
+	override method efectoPostImpacto(){
+		game.schedule(500,{self.moverseHaciaElPersonaje()})	
+	}
+	
 	override method impacto() {
-		self.comprobarQueNoSeEcuentraEnElJuego()
-		self.estado(normal)
-		game.addVisual(self)
-		game.schedule(500,{self.moverseHaciaElPersonaje()})		
+		super()
 		cantidadMovimientos = 0
 	}
 	
@@ -89,22 +92,23 @@ class Piedra inherits Proyectil{
 	const property danioNormal = 20
 	
 	override method colisionoCon(pj){
-		if (self.estado() == normal){
-			pj.perderVida(estado.danio(self))
+		pj.perderVida(estado.danio(self))
+		if (not estado.dejaPasar()){
 			pj.irAposicionAnterior()
 		}
 	}
-	override method impacto() {
-		self.comprobarQueNoSeEcuentraEnElJuego()
-		self.estado(normal)
-		game.addVisual(self)
-		game.schedule(7500,{game.removeVisual(self)})
+	override method efectoPostImpacto(){
+		game.schedule(50,{self.estado(afirmado)})
 	}
 }
 
 class BolaDePinchos inherits Proyectil{
-	var property imagen = "bolaDePinchos.png" //nose porque no aparece su imagen :(
+	var property imagen = "bolaDePinchos.png"
 	const property danioNormal = 10
+	
+	override method efectoPostImpacto(){
+		game.schedule(500,{self.removerSiEsta()})
+	}
 	
 }
 
@@ -132,10 +136,7 @@ class Bomba inherits Proyectil{
 	const property explosion = new Explosion(posicionCentral = position)
 	const property danioNormal = 0
 	
-	override method impacto(){
-		self.comprobarQueNoSeEcuentraEnElJuego()
-		self.estado(normal)
-		game.addVisual(self)
+	override method efectoPostImpacto(){
 		game.schedule(500,{self.explotar()})
 	}
 	
