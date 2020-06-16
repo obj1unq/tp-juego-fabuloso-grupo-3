@@ -3,19 +3,9 @@ import wollok.game.*
 
 
 object lanzaPiedras {
-	const proyectilesActuales = [new Piedra()]
-	
-	method iniciar(){
-		game.onTick(3037, "lanzaProyectilesActivado", {self.lanzarTodo()})
-		game.onTick(20000, "agregarProyectiles", {self.agregarProyectil()})
-	}
-	
-	method lanzarTodo(){
-		proyectilesActuales.forEach({proyectil => proyectil.caer()})
-	}	
-	
-	method agregarProyectil(){
-		proyectilesActuales.add(new Piedra())
+	method lanzar(){
+		const piedra = new Piedra()
+		piedra.caer()
 	}
 }
 

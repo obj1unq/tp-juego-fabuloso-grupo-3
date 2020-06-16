@@ -62,7 +62,8 @@ object visualScreen {
 		//PROYECTILES
 		const piedraMueve = new PiedraQueSeMueve()
 		game.onTick(5000, "piedraquesemueve", {piedraMueve.caer()})
-		lanzaPiedras.iniciar()
+		//lanzaPiedras.iniciar()
+		game.onTick(20000,"piedraObstaculo", {lanzaPiedras.lanzar()})
 		lanzaBolasDePinchos.iniciar()
 		
 		//MONEDAS
