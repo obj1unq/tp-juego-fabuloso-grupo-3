@@ -103,7 +103,7 @@ class Piedra inherits Proyectil{
 }
 
 class BolaDePinchos inherits Proyectil{
-	var property imagen = "bolaDePinchos.png" 
+	var property imagen = "bolaDePinchos.png"
 	const property danioNormal = 10
 	
 	override method efectoPostImpacto(){
