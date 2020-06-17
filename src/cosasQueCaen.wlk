@@ -130,21 +130,6 @@ object botiquin {
 }
 
 
-class Bomba inherits Proyectil{
-	var property imagen = "bomba.png"
-	const property explosion = new Explosion(posicionCentral = position)
-	const property danioNormal = 0
-
-	override method efectoPostImpacto(){
-		game.schedule(500,{self.explotar()})
-	}
-
-	method explotar(){
-		explosion.posicionCentral(position)
-		game.removeVisual(self)
-		explosion.aparecer()
-	}
-}
 
 class Moneda{
 	const property image= "moneda.png"
@@ -161,6 +146,32 @@ class Moneda{
 	method colisionoCon(pj){
 		pj.ganarPuntos(puntosQueOtorga)
 		game.removeVisual(self)
+	}
+}
+class Bomba inherits Proyectil{
+	var property imagen = "bomba.png"
+	const property explosion = new Explosion(posicionCentral = position)
+	const property danioNormal = 0
+
+	override method efectoPostImpacto(){
+		game.schedule(500,{self.explotar()})
+	}
+
+	method explotar(){
+		explosion.posicionCentral(position)
+		game.removeVisual(self)
+		explosion.aparecer()
+	}
+}
+
+class SuperBomba inherits Bomba{
+	const complemento = new ComplementoSuperExplosion(posicionCentral = position)
+	
+	override method explotar(){
+		complemento.posicionCentral(position)
+		super()
+		complemento.aparecer()
+		
 	}
 }
 

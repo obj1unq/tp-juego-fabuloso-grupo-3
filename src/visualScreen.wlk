@@ -71,6 +71,8 @@ object visualScreen {
 		
 		//BOMBAS
 		game.schedule(5000, {lanzaBombas.inicio()})
+		const superBomba = new SuperBomba()
+		game.onTick(15000,"superBomba",{superBomba.caer()})
 		
 		//BOTIQUIN
 		game.onTick(40000,"apareceBotiquin",{botiquin.aparicion()})
