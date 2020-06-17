@@ -26,21 +26,20 @@ class Explosion{
 	}
 }
 
-class SuperExplosion inherits Explosion{
+class ComplementoSuperExplosion{
+	var property posicionCentral = game.at(5,5)
 	const fuego6 = new Fuego(position =posicionCentral.right(2))
 	const fuego7 = new Fuego(position =posicionCentral.left(2))
 	const fuego8 = new Fuego(position =posicionCentral.down(2))
 	const fuego9 = new Fuego(position =posicionCentral.up(2))
-	const nuevosFuegos = #{fuego6,fuego7,fuego8,fuego9}
+	const fuegos = #{fuego6,fuego7,fuego8,fuego9}
 	
-	override method aparecer(){
-		super()
-		nuevosFuegos.forEach({fuego => fuego.aparecer()})
-		
+	method aparecer(){
+		self.setearPosicionesFuego()
+		fuegos.forEach({fuego => fuego.aparecer()})
 	}
 	
-	override method setearPosicionesFuego(){
-		super()
+	method setearPosicionesFuego(){
 		fuego6.position(posicionCentral.right(2))
 		fuego7.position(posicionCentral.left(2))
 		fuego8.position(posicionCentral.up(2))
