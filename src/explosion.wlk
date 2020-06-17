@@ -26,6 +26,28 @@ class Explosion{
 	}
 }
 
+class SuperExplosion inherits Explosion{
+	const fuego6 = new Fuego(position =posicionCentral.right(2))
+	const fuego7 = new Fuego(position =posicionCentral.left(2))
+	const fuego8 = new Fuego(position =posicionCentral.down(2))
+	const fuego9 = new Fuego(position =posicionCentral.up(2))
+	const nuevosFuegos = #{fuego6,fuego7,fuego8,fuego9}
+	
+	override method aparecer(){
+		super()
+		nuevosFuegos.forEach({fuego => fuego.aparecer()})
+		
+	}
+	
+	override method setearPosicionesFuego(){
+		super()
+		fuego6.position(posicionCentral.right(2))
+		fuego7.position(posicionCentral.left(2))
+		fuego8.position(posicionCentral.up(2))
+		fuego9.position(posicionCentral.down(2))
+	}
+}
+
 
 class Fuego{
 	const property image = "fueguito.png"
