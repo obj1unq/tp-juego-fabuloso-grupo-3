@@ -1,0 +1,81 @@
+import personaje.*
+import wollok.game.*
+import cosasQueCaen.*
+import estados.*
+import explosion.*
+
+describe "La vida del guachin con las cosas que caen" {
+
+	fixture {
+		game.addVisual(personaje)
+	}
+ 
+	test "El guachin gana vida por botiquin" {
+		personaje.vida(50)
+		game.addVisual(botiquin)
+		botiquin.colisionoCon(personaje)
+		
+		assert.equals(80, personaje.vida())
+
+	}
+	test "El guachin no supera los 100 puntos de vida" {
+		game.addVisual(botiquin)
+		botiquin.colisionoCon(personaje)
+		
+		assert.equals(100, personaje.vida())
+	}
+	test "El guachin pierde vida por una roca" {
+		
+		const piedraComun = new Piedra()
+		game.addVisual(piedraComun)
+		piedraComun.estado(normal)
+		piedraComun.colisionoCon(personaje)
+		
+		assert.equals(80, personaje.vida())
+	}
+	test "El guachin pierde vida por una bola de pinchos" {
+		const bolaDePinchos = new BolaDePinchos()
+		game.addVisual(bolaDePinchos)
+		bolaDePinchos.estado(normal)
+		bolaDePinchos.colisionoCon(personaje)
+		
+		assert.equals(90, personaje.vida())
+	}
+	test "El guachin pierde vida por una piedra que se mueve" {
+		const piedraMovediza = new PiedraQueSeMueve()
+		game.addVisual(piedraMovediza)
+		piedraMovediza.estado(normal)
+		piedraMovediza.colisionoCon(personaje)
+		
+		assert.equals(80, personaje.vida())
+	}
+	test "El guachin pierde vida por la fuego de bomba" {
+		const fuego = new Fuego()
+		game.addVisual(fuego)
+		fuego.colisionoCon(personaje)
+		
+		assert.equals(70, personaje.vida())
+	}
+	test "Al moverse el guachin hacia arriba, cambia su posicion en y = y + 1 y su orientación" {
+		personaje.moverArriba()
+		assert.equals(game.at(0,1), personaje.position())
+		assert.equals("elGuachinArriba.png", personaje.image())
+	}
+	test "Al moverse el guachin hacia abajo, cambia su posicion en y = y - 1 y su orientación" {
+		personaje.position(game.at(1,1))
+		personaje.moverAbajo()
+		assert.equals(game.at(1,0), personaje.position())
+		assert.equals("elGuachinAbajo.png", personaje.image())
+	}
+	test "Al moverse el guachin hacia la derecha, cambia su posicion en x = x + 1 y su orientación" {
+		personaje.moverDerecha()
+		assert.equals(game.at(1,0), personaje.position())
+		assert.equals("elGuachinDerecha.png", personaje.image())
+	}
+	test "Al moverse el guachin hacia la izquierda, cambia su posicion en x = x - 1 y su orientación" {
+		personaje.position(game.at(1,1))
+		personaje.moverIzquierda()
+		assert.equals(game.at(0,1), personaje.position())
+		assert.equals("elGuachinIzquierda.png", personaje.image())
+	}
+}
