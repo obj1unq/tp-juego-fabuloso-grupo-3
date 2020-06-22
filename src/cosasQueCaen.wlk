@@ -57,7 +57,7 @@ class PiedraQueSeMueve inherits Proyectil{
 
 	method moverseHaciaElPersonaje() {
 		if(cantidadMovimientos == 2) {
-			game.removeVisual(self)
+			self.removerSiEsta()
 		}
 		else {
 			self.position(self.unoHaciaPersonaje())
@@ -106,7 +106,7 @@ class BolaDePinchos inherits Proyectil{
 	const property danioNormal = 10
 
 	override method efectoPostImpacto(){
-		game.schedule(500,{self.removerSiEsta()})
+		game.schedule(1000,{self.removerSiEsta()})
 	}
 
 }
@@ -165,7 +165,7 @@ class Bomba inherits Proyectil{
 }
 
 class SuperBomba inherits Bomba{
-	const complemento = new ComplementoSuperExplosion(posicionCentral = position)
+	const property complemento = new ComplementoSuperExplosion(posicionCentral = position, complemento = self.explosion())
 	
 	override method explotar(){
 		complemento.posicionCentral(position)
