@@ -5,6 +5,7 @@ import lanzaProyectiles.*
 import guarda.*
 import vida.*
 import cronometro.*
+import dificultades.*
 
 object visualScreen {
 	var property image = "presentacion.png"
@@ -61,9 +62,9 @@ object visualScreen {
 		
 		//PROYECTILES
 		const piedraMueve = new PiedraQueSeMueve()
-		game.onTick(5000, "piedraquesemueve", {piedraMueve.caer()})
+		game.onTick(dificultad.tiempoDeLanzamientoPiedraMovediza(), "piedraquesemueve", {piedraMueve.caer()})
 		//lanzaPiedras.iniciar()
-		game.onTick(20000,"piedraObstaculo", {lanzaPiedras.lanzar()})
+		game.onTick(dificultad.tiempoDeLanzamientoPiedrasEstaticas(),"piedraObstaculo", {lanzaPiedras.lanzar()})
 		lanzaBolasDePinchos.iniciar()
 		
 		//MONEDAS
@@ -72,7 +73,7 @@ object visualScreen {
 		//BOMBAS
 		game.schedule(5000, {lanzaBombas.inicio()})
 		const superBomba = new SuperBomba()
-		game.onTick(15000,"superBomba",{superBomba.caer()})
+		game.onTick(dificultad.tiempoDeLanzamientoSuperBomba(),"superBomba",{superBomba.caer()})
 		
 		//BOTIQUIN
 		game.onTick(40000,"apareceBotiquin",{botiquin.aparicion()})

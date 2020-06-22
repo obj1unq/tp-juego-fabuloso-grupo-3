@@ -1,8 +1,10 @@
 import cosasQueCaen.*
 import wollok.game.*
+import dificultades.*
 
 
 object lanzaPiedras {
+	//dificultadActual.tiempoDeLanzamientoPiedraMovediza()
 	method lanzar(){
 		const piedra = new Piedra()
 		piedra.caer()
@@ -13,8 +15,8 @@ object lanzaBolasDePinchos{
 	const proyectilesActuales = [new BolaDePinchos()]
 	
 	method iniciar(){
-		game.onTick(3037, "lanzaProyectilesActivado", {self.lanzarTodo()})
-		game.onTick(20000, "agregarProyectiles", {self.agregarProyectil()})
+		game.onTick(dificultad.tiempoDeLanzamientoBolasDePinchos(), "lanzaProyectilesActivado", {self.lanzarTodo()})
+		game.onTick(dificultad.tiempoDeCargaBolasDePinchos(), "agregarProyectiles", {self.agregarProyectil()})
 	}
 	
 	method lanzarTodo(){
@@ -30,8 +32,8 @@ object lanzaBombas{
 	const bombasActuales = #{new Bomba()}
 	
 	method inicio(){
-		game.onTick(8429, "lanzaBombasActivado", {self.lanzarTodo()})
-		game.onTick(50000, "agregarBombas", {self.agregarBomba()})
+		game.onTick(dificultad.tiempoDeLanzamientoBombas(), "lanzaBombasActivado", {self.lanzarTodo()})
+		game.onTick(dificultad.tiempoDeCargaBombas(), "agregarBombas", {self.agregarBomba()})
 	}
 	
 	method lanzarTodo(){
