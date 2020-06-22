@@ -10,7 +10,7 @@ class Explosion{
 	const fuego3 = new Fuego(position =posicionCentral.left(1))
 	const fuego4 = new Fuego(position =posicionCentral.down(1))
 	const fuego5 = new Fuego(position =posicionCentral.up(1))
-	const todosLosFuegos = #{fuego1,fuego2,fuego3,fuego4,fuego5}
+	const property todosLosFuegos = #{fuego1,fuego2,fuego3,fuego4,fuego5}
 	
 	method aparecer(){
 		self.setearPosicionesFuego()
@@ -27,6 +27,7 @@ class Explosion{
 }
 
 class ComplementoSuperExplosion{
+	const property complemento
 	var property posicionCentral = game.at(5,5)
 	const fuego6 = new Fuego(position =posicionCentral.right(2))
 	const fuego7 = new Fuego(position =posicionCentral.left(2))
@@ -36,7 +37,13 @@ class ComplementoSuperExplosion{
 	
 	method aparecer(){
 		self.setearPosicionesFuego()
-		fuegos.forEach({fuego => fuego.aparecer()})
+		fuegos.forEach({fuego => self.aparece(fuego)})
+	}
+	
+	method aparece(fuego){
+		if(celda.hayAlgunoAlRededor(fuego.position(),complemento.todosLosFuegos())){
+			fuego.aparecer()
+		}
 	}
 	
 	method setearPosicionesFuego(){

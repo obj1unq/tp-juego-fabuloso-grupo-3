@@ -37,4 +37,29 @@ object celda {
 		return(game.getObjectsIn(coordenada).isEmpty() or	(game.getObjectsIn(coordenada).contains(personaje) and game.getObjectsIn(coordenada).size() == 1))
 	}
 	
+	method hayAlgunoAlRededor(coordenada, lista){
+		return self.hayAlgunoRight(lista,coordenada) or 
+			   self.hayAlgunoLeft(lista,coordenada) or
+			   self.hayAlgunoUp(lista,coordenada) or
+			   self.hayAlgunoDown(lista,coordenada)
+	}
+	
+	method hayAlgunoRight(lista,coordenada){
+		return lista.any({elemento => game.getObjectsIn(coordenada.right(1)).contains(elemento)})
+	}
+	
+		method hayAlgunoLeft(lista,coordenada){
+		return lista.any({elemento => game.getObjectsIn(coordenada.left(1)).contains(elemento)})
+	}
+	
+	method hayAlgunoDown(lista,coordenada){
+		return lista.any({elemento => game.getObjectsIn(coordenada.down(1)).contains(elemento)})
+	}
+	
+	method hayAlgunoUp(lista,coordenada){
+		return lista.any({elemento => game.getObjectsIn(coordenada.up(1)).contains(elemento)})
+	}
+	
+	
+	
 }
