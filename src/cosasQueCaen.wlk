@@ -167,6 +167,10 @@ class Bomba inherits Proyectil{
 class SuperBomba inherits Bomba{
 	const property complemento = new ComplementoSuperExplosion(posicionCentral = position, complemento = self.explosion())
 	
+	override method imagen(){
+		return "superbomba.png"
+	}
+	
 	override method explotar(){
 		complemento.posicionCentral(position)
 		super()
