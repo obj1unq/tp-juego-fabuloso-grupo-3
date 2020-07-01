@@ -8,12 +8,13 @@ object vidaPersonaje {
 		corazonIzquierdo.poner()
 		corazonDerecho.poner()
 	}
+	
 	method modificarVida(){
-		if (personaje.vida().between(0,20)){
+		if (personaje.vida().between(0,0)){
 			corazonIzquierdo.image("corazonVacio.png")
 			corazonDerecho.image("corazonVacio.png")
 		}
-		if (personaje.vida().between(21, 40)){
+		if (personaje.vida().between(1, 40)){
 			corazonIzquierdo.image("medioCorazon.png")
 			corazonDerecho.image("corazonVacio.png")
 		} 

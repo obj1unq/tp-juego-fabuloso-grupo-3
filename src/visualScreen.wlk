@@ -6,30 +6,40 @@ import guarda.*
 import vida.*
 import cronometro.*
 import dificultades.*
+import control.*
 
 object visualScreen {
-	var property image = "presentacion.png"
-	var property position = game.at(2, 3)
-	var inicializada = false
+	var property inicializada = false
 	
-	method inicializada() = inicializada
-	
-	method inicializar() {
+	method inicializar(_evento) {
 		if (!inicializada) {
-			game.addVisual(self)
+			game.addVisual(_evento)
 			inicializada = true
-			self.ponerPersonaje()
-			game.onTick(300, "personaje presentacion", {self.moverPersonaje()})
+			_evento.inicializar()
 		}
 	}
 	
-	method quitar() {
+	method quitar(_evento) {
 		if (inicializada) {
-			game.removeVisual(self)
+			game.removeVisual(_evento)
 			inicializada = false
-			game.removeVisual(personaje)
-			game.removeTickEvent("personaje presentacion")
+			_evento.quitar()
 		}
+	}
+}
+
+object presentacion {
+	var property image = "presentacion.png"
+	var property position = game.at(2, 3)
+	
+	method inicializar() {
+		self.ponerPersonaje()
+		game.onTick(300, "personaje presentacion", {self.moverPersonaje()})
+	}
+	
+	method quitar() {
+		game.removeVisual(personaje)
+		game.removeTickEvent("personaje presentacion")
 	}
 	
 	method ponerPersonaje() {
@@ -43,8 +53,24 @@ object visualScreen {
 		}
 		else { personaje.position(game.at(0,2)) }
 	}
+}
+
+object gameOver {
+	var property image = "gameOver2.png"
+	var property position = game.at(2, 3)
 	
+	method inicializar() {
+	}
+	
+	method quitar() {
+	}
+}
+
+object inicio {
 	method newGame() {
+		//CONTROLADOR
+		game.onTick(1000, "controlador", { control.controlar() })
+		
 		//PERSONAJE
 		personaje.image("elGuachinDeFrente.png")
 		personaje.position(game.at(0,0))
@@ -58,7 +84,6 @@ object visualScreen {
 		
 		//CRONOMETRO
 		cronometro.ponerCronometro()
-		game.onTick(1000, "cronometro", { cronometro.sumar() })
 		
 		//PROYECTILES
 		const piedraMueve = new PiedraQueSeMueve()
