@@ -1,5 +1,6 @@
 import wollok.game.*
 import personaje.*
+import visualScreen.*
 
 object cronometro {
 	
@@ -9,25 +10,15 @@ object cronometro {
 	}
 	
 	method sumar() {
-		if (personaje.vida() > 0) {
-			if (segundos.numero() == 59) { 
-				segundos.ponerEnCero()
-				minutos.sumar()
-			}
-			else {
-				segundos.sumar()
-			}
-			
+		if (segundos.numero() == 59) { 
+			segundos.ponerEnCero()
+			minutos.sumar()
 		}
-		else { 
-			console.println("Perdiste, sobreviviste: " + minutos.numero() + ":" +
-							segundos.numero() + " y tu puntaje es: " + personaje.puntos())
-			game.clear()
-		}
+		else { segundos.sumar() }
 	}
 }
 
-class Reloj {
+class Contador {
 	var property position = game.at(0,0)
 	var property image = "Numeros/num-0.png"
 		
@@ -48,12 +39,12 @@ class Reloj {
 	method columna()
 }
 
-object minutos inherits Reloj {
+object minutos inherits Contador {
 	
 	override method columna() = game.height() - 2
 }
 
-object segundos inherits Reloj {
+object segundos inherits Contador {
 
 	override method columna() = game.height() - 1
 	

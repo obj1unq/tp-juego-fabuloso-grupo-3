@@ -17,12 +17,12 @@ program juego{
 	game.cellSize(64)
 	
 	//PRESENTACION
-	visualScreen.inicializar()
+	visualScreen.inicializar(presentacion)
 	keyboard.enter().onPressDo({
 		if (visualScreen.inicializada()) {
-			visualScreen.quitar()
+			visualScreen.quitar(presentacion)
+			inicio.newGame()
 		}
-		visualScreen.newGame()
 	})
 	
 	//START
