@@ -55,6 +55,17 @@ object presentacion {
 	}
 }
 
+object dificultadScreen {
+	var property image = "artenuevo1.png"
+	var property position = game.at(1, 2)
+	
+	method inicializar() {
+	}
+	
+	method quitar() {
+	}
+}
+
 object gameOver {
 	var property image = "gameOver2.png"
 	var property position = game.at(2, 3)
