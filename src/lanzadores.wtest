@@ -1,0 +1,56 @@
+import lanzaProyectiles.*
+import cosasQueCaen.*
+
+describe "lanzaProyectiles" {
+	
+	fixture{
+		lanzaBolasDePinchos.agregarProyectil()
+		lanzaBolasDePinchos.agregarProyectil()
+		lanzaBombas.agregarBomba()
+		lanzaBombas.agregarBomba()		 
+	}
+	
+	test "lanzaPinchos sabe agregar pinchos"{
+		lanzaBolasDePinchos.agregarProyectil()
+		assert.equals(4,lanzaBolasDePinchos.proyectilesActuales().size())
+		lanzaBolasDePinchos.agregarProyectil()
+		lanzaBolasDePinchos.agregarProyectil()
+		assert.equals(6,lanzaBolasDePinchos.proyectilesActuales().size())
+	}
+	
+	test "lanzaPinchos sabe lanzar todo"{
+		const coordenadasIniciales = lanzaBolasDePinchos.mapeoProyectiles()
+		lanzaBolasDePinchos.lanzarTodo()
+		assert.notEquals(coordenadasIniciales, lanzaBolasDePinchos.mapeoProyectiles())
+	}
+	
+	test "lanzaBombas sabe agregar bombas"{
+		lanzaBombas.agregarBomba()
+		assert.equals(4, lanzaBombas.bombasActuales().size())
+		lanzaBombas.agregarBomba()
+		assert.notEquals(4,lanzaBombas.bombasActuales().size())
+		
+	}
+	
+	test "lanzaBombas sabe lanzar bombas"{
+		const coordenadasIniciales = lanzaBombas.mapeoProyectiles()
+		lanzaBombas.lanzarTodo()
+		assert.notEquals(coordenadasIniciales, lanzaBombas.mapeoProyectiles())
+	}
+	
+	test "controlador de monedas sabe quitar monedas"{
+		controladorMonedas.quitarMoneda()
+		assert.equals(4,controladorMonedas.monedasActuales().size())
+		controladorMonedas.quitarMoneda()
+		controladorMonedas.quitarMoneda()
+		assert.equals(2,controladorMonedas.monedasActuales().size())
+	}
+	
+	test "controlador de monedas hace aparecer las monedas"{
+		const coordenadasIniciales = controladorMonedas.mapeoMonedas()
+		controladorMonedas.aparecenTodas()
+		assert.notEquals(coordenadasIniciales, controladorMonedas.mapeoMonedas())
+	}
+	
+
+}
