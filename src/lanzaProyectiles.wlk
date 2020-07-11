@@ -12,7 +12,7 @@ object lanzaPiedras {
 }
 
 object lanzaBolasDePinchos{
-	const proyectilesActuales = [new BolaDePinchos()]
+	const property proyectilesActuales = [new BolaDePinchos()]
 	
 	method iniciar(){
 		game.onTick(dificultad.tiempoDeLanzamientoBolasDePinchos(), "lanzaProyectilesActivado", {self.lanzarTodo()})
@@ -26,10 +26,14 @@ object lanzaBolasDePinchos{
 	method agregarProyectil(){
 		proyectilesActuales.add(new BolaDePinchos())
 	}
+	
+	method mapeoProyectiles(){
+		return proyectilesActuales.map({proyectil => proyectil.position()})
+	}
 }
 
 object lanzaBombas{
-	const bombasActuales = #{new Bomba()}
+	const property bombasActuales = #{new Bomba()}
 	
 	method inicio(){
 		game.onTick(dificultad.tiempoDeLanzamientoBombas(), "lanzaBombasActivado", {self.lanzarTodo()})
@@ -42,6 +46,10 @@ object lanzaBombas{
 	
 	method agregarBomba(){
 		bombasActuales.add(new Bomba())
+	}
+	
+	method mapeoProyectiles(){
+		return bombasActuales.map({proyectil => proyectil.position()})
 	}
 }
 
@@ -61,6 +69,10 @@ object controladorMonedas{
 		if(monedasActuales.size() > 1){
 			monedasActuales.remove(monedasActuales.head())
 		}
+	}
+	
+	method mapeoMonedas(){
+		return monedasActuales.map({moneda => moneda.position()})
 	}
 }
 
