@@ -1,0 +1,105 @@
+import cosasQueCaen.*
+import estados.*
+import personaje.*
+
+describe "proyectiles"{
+	var piedraEstatica
+	var piedraMovediza
+	var pinchos
+	var bomba
+	var superBomba
+	fixture{
+		piedraEstatica = new Piedra()
+		piedraMovediza= new PiedraQueSeMueve()
+		pinchos = new BolaDePinchos()
+		bomba = new Bomba()
+		superBomba = new SuperBomba()
+	}
+	
+	test "comportamiento Piedra estatica"{
+		assert.equals(0,piedraEstatica.estado().danio(piedraEstatica))
+		assert.equals("sombra-png-4.png", piedraEstatica.image())
+		assert.that(piedraEstatica.estado().dejaPasar())
+		
+		var posicionInicial = piedraEstatica.position()
+		
+		piedraEstatica.caer()
+		assert.notEquals(posicionInicial, piedraEstatica.position())
+		
+		piedraEstatica.estado(normal)
+		assert.equals(20,piedraEstatica.estado().danio(piedraEstatica))
+		assert.equals("piedra.png", piedraEstatica.image())
+		assert.that(piedraEstatica.estado().dejaPasar())
+		
+		piedraEstatica.estado(afirmado)
+		assert.equals(0,piedraEstatica.estado().danio(piedraEstatica))
+		assert.equals("piedra.png", piedraEstatica.image())
+		assert.notThat(piedraEstatica.estado().dejaPasar())
+		
+	}
+	
+	test "comportamiento piedra movediza"{
+		assert.equals(0,piedraMovediza.estado().danio(piedraMovediza))
+		assert.equals("sombra-png-4.png", piedraMovediza.image())
+		assert.that(piedraMovediza.estado().dejaPasar())
+		
+		var posicionAAnalizar = piedraMovediza.position()
+		piedraMovediza.caer()
+		assert.notEquals(posicionAAnalizar, piedraMovediza.position())
+		posicionAAnalizar = piedraMovediza.position()
+		
+		piedraMovediza.estado(normal)
+		assert.equals(20,piedraMovediza.estado().danio(piedraMovediza))
+		assert.equals("piedra.png", piedraMovediza.image())
+		assert.that(pinchos.estado().dejaPasar())
+		
+	}
+	
+	test "comportamiento Bomba"{
+		assert.equals(0,bomba.estado().danio(bomba))
+		assert.equals("sombra-png-4.png",bomba.image())
+		
+		bomba.estado(normal)
+		assert.equals(0,bomba.estado().danio(bomba))
+		assert.equals("bomba.png",bomba.image())
+		
+		var posicionAAnalizar = bomba.position()
+		bomba.caer()
+		assert.notEquals(posicionAAnalizar, bomba.position())
+		
+		bomba.explotar()
+		assert.equals(bomba.position(), bomba.explosion().posicionCentral())	
+	}
+	test "comportamiento superBomba"{
+		assert.equals(0,superBomba.estado().danio(superBomba))
+		assert.equals("sombra-png-4.png",bomba.image())
+		
+		superBomba.estado(normal)
+		assert.equals(0,superBomba.estado().danio(superBomba))
+		assert.equals("superbomba.png",superBomba.image())
+		
+		var posicionAAnalizar = superBomba.position()
+		superBomba.caer()
+		assert.notEquals(posicionAAnalizar, superBomba.position())
+		
+		superBomba.explotar()
+		assert.equals(superBomba.position(), superBomba.explosion().posicionCentral())	
+		assert.equals(superBomba.position(),superBomba.complemento().posicionCentral())
+	}
+	test "comportamiento bolaDePinchos"{
+		assert.equals(0,pinchos.estado().danio(pinchos))
+		assert.equals("sombra-png-4.png", pinchos.image())
+		assert.that(pinchos.estado().dejaPasar())
+		
+		var posicionAAnalizar = pinchos.position()
+		pinchos.caer()
+		assert.notEquals(posicionAAnalizar, pinchos.position())
+		
+		
+		pinchos.estado(normal)
+		assert.equals(10,pinchos.estado().danio(pinchos))
+		assert.equals("bolaDePinchos.png", pinchos.image())
+		assert.that(pinchos.estado().dejaPasar())
+	}
+	
+}
